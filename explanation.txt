@@ -1,0 +1,23 @@
+I built a Django-based web application that focuses on secure user authentication and blog management. 
+The system includes registration, login, logout, role-based access, and password reset via email.
+
+Authentication Explanation:
+I used Django’s built-in authentication system to securely manage users. 
+Passwords are hashed automatically, and sessions are handled by Django, ensuring security best practices.
+
+User Roles:
+There are two roles: admin and regular users. Admins have full access through Django admin, 
+while regular users can only manage their own blog posts.
+
+Password Reset Feature (Important!):
+I implemented password reset functionality using Django’s built-in password reset views. 
+When a user forgets their password, a secure token-based link is sent via email using Mailtrap. 
+The user can reset their password and is redirected back to login.
+
+UI & Design:
+I created a consistent card-based UI using custom CSS so all authentication and dashboard pages have the same look and feel.
+
+Challenges Faced:
+The main challenge was correctly configuring email-based password reset and handling Django URL/view flow, 
+which helped me understand Django authentication deeply.
+

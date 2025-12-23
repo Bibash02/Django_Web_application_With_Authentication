@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Blogs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">LMS</a>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'blog' %}">Blogs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <a href="{% url 'create_blog' %}" class="btn">Create Blog</a>
+
+    {% for blog in blogs %}
+    <div class="col-md-4">
+        <div class="card blog-card">
+            {% if blog.image %}
+            <img src="{{ blog.image.url }}" class="card-img-top">
+            {% endif %}
+
+            <div class="card-body">
+                <h5 class="card-title">{{ blog.title }}</h5>
+                <p class="card-text">
+                    {{ blog.content|truncatechars:120 }}
+                </p>
+                <a href="{% url 'delete_blog' blog.id %}" class="btn btn-sm">
+                    Delete
+                </a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>No blogs created yet.</p>
+    {% endfor %}
+</div>
+
+</body>
+</html>
